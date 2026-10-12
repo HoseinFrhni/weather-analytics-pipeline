@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Environment
+.env
+
+# Logs
+logs/
+*.log
+
+# Data
+data/raw/
+data/processed/
+
+# DuckDB
+*.duckdb
+*.duckdb.wal
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
