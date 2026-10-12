@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: mart_weather_daily
+    description: "Analytics-ready daily weather per city"
+    columns:
+      - name: city
+        tests:
+          - not_null
+      - name: observation_date
+        tests:
+          - not_null
+      - name: avg_temperature_c
+        tests:
+          - not_null

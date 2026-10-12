@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_weather_daily
+    description: "Daily aggregates per city"
+    columns:
+      - name: city
+        tests:
+          - not_null
+      - name: observation_date
+        tests:
+          - not_null

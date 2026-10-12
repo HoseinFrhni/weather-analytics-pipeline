@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_weather
+    description: "Cleaned hourly weather observations"
+    columns:
+      - name: observed_at
+        description: "Observation timestamp"
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['berlin', 'amsterdam', 'tehran']
+      - name: temperature_c
+        tests:
+          - not_null
