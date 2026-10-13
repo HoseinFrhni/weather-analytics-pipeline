@@ -1,0 +1,28 @@
+[project]
+name = "weather-analytics-pipeline"
+version = "0.1.0"
+description = "End-to-end weather analytics pipeline with Python, DuckDB and dbt"
+requires-python = ">=3.11"
+
+[tool.taskipy.tasks]
+# ---- Ingestion ----
+extract = { cmd = "python run_extract.py", help = "Fetch weather data from Open-Meteo API" }
+
+# ---- dbt ----
+dbt_debug = { cmd = "dbt debug --project-dir dbt_project --profiles-dir dbt_project", help = "Check dbt connection" }
+dbt_run = { cmd = "dbt run --project-dir dbt_project --profiles-dir dbt_project", help = "Run dbt models" }
+dbt_test = { cmd = "dbt test --project-dir dbt_project --profiles-dir dbt_project", help = "Run dbt data tests" }
+dbt_docs = { cmd = "dbt docs generate --project-dir dbt_project --profiles-dir dbt_project", help = "Generate dbt docs" }
+dbt_docs_serve = { cmd = "dbt docs serve --project-dir dbt_project --profiles-dir dbt_project", help = "Serve dbt docs on localhost:8080" }
+
+# ---- Python tests ----
+pytest = { cmd = "pytest -v", help = "Run Python tests" }
+
+# ---- Full pipeline ----
+pipeline = { cmd = "task extract && task dbt_run && task dbt_test", help = "Run full ELT pipeline end-to-end" }
+
+# ---- Utility ----
+clean = { cmd = "powershell -Command \"Remove-Item -Recurse -Force dbt_project\\target, dbt_project\\logs -ErrorAction SilentlyContinue\"", help = "Clean dbt artifacts" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

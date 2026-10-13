@@ -7,8 +7,8 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
 )
 
-START_DATE = "2024-01-01"
-END_DATE = "2024-12-31"
+START_DATE = "1980-01-01"
+END_DATE = "2026-07-31"
 
 
 def main() -> None:
