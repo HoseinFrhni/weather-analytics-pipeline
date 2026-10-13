@@ -5,15 +5,37 @@ models:
     description: "Cleaned hourly weather observations"
     columns:
       - name: observed_at
-        description: "Observation timestamp"
+        description: "Observation timestamp (UTC)"
         tests:
           - not_null
       - name: city
+        description: "City name"
         tests:
           - not_null
           - accepted_values:
               arguments:
                 values: ['berlin', 'amsterdam', 'tehran']
       - name: temperature_c
+        description: "Temperature at 2m (°C)"
         tests:
           - not_null
+          - temperature_in_range:
+              arguments:
+                min_value: -50
+                max_value: 60
+      - name: humidity_pct
+        description: "Relative humidity (%)"
+        tests:
+          - not_null
+          - temperature_in_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+      - name: wind_speed_kmh
+        description: "Wind speed at 10m (km/h)"
+        tests:
+          - not_null
+          - temperature_in_range:
+              arguments:
+                min_value: 0
+                max_value: 300
